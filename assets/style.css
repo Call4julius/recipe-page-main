@@ -1,0 +1,254 @@
+/* general reset */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  color-scheme: light dark;
+}
+
+body,
+h1,
+h2,
+p {
+  margin: 0;
+}
+
+body {
+  line-height: 1.5;
+  text-rendering: optimizeSpeed;
+  min-height: 100vh;
+}
+
+h1,
+h2 {
+  line-height: 1.1;
+}
+
+img,
+picture {
+  display: block;
+  max-width: 100%;
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+
+/* custom property */
+:root {
+  /* color */
+  --primary-Nutmeg: hsl(14, 45%, 36%);
+  --primary-Dark-Raspberry: hsl(332, 51%, 32%);
+  --neutral-White: hsl(0, 0%, 100%);
+  --neutral-Rose-White: hsl(331, 79%, 94%);
+  --neutral-Eggshell: hsl(30, 54%, 90%);
+  --neutral-Light-Grey: hsl(30, 18%, 87%);
+  --neutral-Wenge-Brown: hsl(30, 10%, 34%);
+  --neutral-Dark-Charcoal: hsl(24, 5%, 18%);
+
+  /* typography */
+  --ff-primary: 'Outfit', sans-serif;
+  --ff-secondary: 'Young Serif', serif;
+  --fs-primary: 1rem;
+  --fw-thin: 300;
+  --fw-regular: 400;
+  --fw-semi-bold: 600;
+  --fw-bold: 700;
+
+  /* spacing */
+  --spacer-100: 1rem;
+  --spacer-200: 2rem;
+}
+
+/* Utility */
+.d-flex {
+  display: flex;
+}
+
+.flow-content > * + * {
+  margin-top: var(--spacer-200);
+}
+
+.list-content > * + * {
+  margin-top: calc(var(--spacer-100) / 2);
+}
+
+/* General styling */
+body {
+  font-family: var(--ff-primary);
+  font-size: var(--fs-primary);
+  color: var(--neutral-Dark-Charcoal);
+  font-weight: var(--fw-regular);
+  background-color: var(--neutral-Light-Grey);
+  padding-block: calc(var(--spacer-200) * 2.5);
+}
+
+main {
+  width: min(100%, 700px);
+  border-radius: var(--spacer-100);
+  background-color: var(--neutral-White);
+  margin-inline: auto;
+  padding: var(--spacer-200);
+}
+
+.image {
+  border-radius: calc(var(--spacer-100) / 2);
+}
+
+.intro__header,
+.instruction__header,
+.ingredients__header,
+.nutrient__header {
+  font-family: 'Young Serif', serif;
+  font-weight: var(--fw-thin);
+}
+
+.intro__header {
+  font-size: calc(var(--fs-primary) * 2);
+}
+
+.instruction__header,
+.ingredients__header,
+.nutrient__header {
+  color: var(--primary-Nutmeg);
+}
+
+.preparation {
+  padding: var(--spacer-100);
+  background-color: var(--neutral-Rose-White);
+}
+
+.preparation__header {
+  color: var(--primary-Dark-Raspberry);
+}
+
+.preparation__list {
+  li {
+    padding-left: var(--spacer-100);
+
+    &::marker {
+      color: var(--primary-Dark-Raspberry);
+    }
+
+    span {
+      font-weight: var(--fw-semi-bold);
+    }
+  }
+}
+
+.ingredients,
+.instruction {
+  border-bottom: 1px solid var(--neutral-Light-Grey);
+  padding-bottom: var(--spacer-100);
+}
+
+.ingredients__list {
+  list-style-type: square;
+
+  li {
+    padding-left: var(--spacer-100);
+
+    &::marker {
+      color: var(--primary-Nutmeg);
+    }
+  }
+}
+
+.instruction__list {
+  li {
+    padding-left: var(--spacer-100);
+
+    &::marker {
+      color: var(--primary-Nutmeg);
+      font-weight: var(--fw-semi-bold);
+    }
+
+    span {
+      font-weight: var(--fw-semi-bold);
+    }
+  }
+}
+
+.hero__sub--list ::marker {
+  content: '\2714';
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+
+  & tr:not(:last-child) {
+    border-bottom: 1px solid var(--neutral-Light-Grey);
+  }
+
+  td {
+    padding: calc(var(--spacer-100) * 0.5) var(--spacer-200);
+
+    &:last-child {
+      color: var(--primary-Nutmeg);
+      font-weight: var(--fw-bold);
+    }
+  }
+}
+
+@media screen and (max-width: 960px) {
+  :root {
+    --spacer-100: 0.75rem;
+    --spacer-200: 1.5rem;
+  }
+
+  body {
+    padding: 0;
+  }
+
+  main {
+    padding: 0;
+  }
+
+  .container {
+    padding: var(--spacer-200);
+  }
+
+  .image {
+    border-radius: 0;
+  }
+}
+
+.attribution {
+  text-align: center;
+  padding-top: var(--spacer-150);
+}
+
+.attribution a {
+  color: var(--primary-Nutmeg);
+  text-decoration: none;
+  position: relative;
+
+  &::after {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 2.5px;
+    background-color: currentColor;
+    bottom: -2.5px;
+    left: 0;
+    scale: 0;
+    transform-origin: right;
+    transition: scale 400ms ease-in;
+  }
+
+  &:is(:hover, :focus-visible) {
+    outline: 0;
+
+    &::after {
+      scale: 1;
+      transform-origin: left;
+    }
+  }
+}
